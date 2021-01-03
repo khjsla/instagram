@@ -1,4 +1,4 @@
-# instagram_clone_codding
+# instagram_clone_coding
 
 A new Flutter application.
 
