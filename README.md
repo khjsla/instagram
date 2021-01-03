@@ -1,4 +1,4 @@
-# instagram_clone_coding
+# instagram_coding
 
 이거슨 ,,,
 
