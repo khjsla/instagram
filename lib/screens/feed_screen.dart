@@ -1,3 +1,4 @@
+//파일 옮길때 그냥 옮기면 안됨 우클 해서 refactor 로 옮기기
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_two_record/widgets/post.dart'; //import my function
