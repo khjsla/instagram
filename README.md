@@ -1,10 +1,11 @@
-# instagram_two_record
+# instagram_coding
 
-A new Flutter application.
+이거슨 ,,,
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
+to make a small instagram application
 
 A few resources to get you started if this is your first Flutter project:
 
