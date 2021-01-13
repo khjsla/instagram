@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_two_record/constants/auth_input_decor.dart';
 import 'package:instagram_two_record/constants/common_size.dart';
 import 'package:instagram_two_record/home_page.dart';
+import 'package:instagram_two_record/widgets/or_divider.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -47,7 +49,7 @@ class _SignUpFormState extends State<SignUpForm> {
               TextFormField(
                 controller: _emailController,
                 cursorColor: Colors.black54,
-                decoration: _textInputDecor('Email'),
+                decoration: textInputDecor('Email'),
                 validator: (text) {
                   if (text.isNotEmpty && text.contains("@")) {
                     return null;
@@ -66,7 +68,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 cursorColor: Colors.black54,
                 obscureText: true,
                 //for 비김밀번호 숨
-                decoration: _textInputDecor('Password'),
+                decoration: textInputDecor('Password'),
                 validator: (text) {
                   if (text.isNotEmpty && text.length > 5) {
                     return null;
@@ -85,7 +87,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 cursorColor: Colors.black54,
                 obscureText: true,
                 //for 비김밀번호 숨
-                decoration: _textInputDecor('Confirm Password'),
+                decoration: textInputDecor('Confirm Password'),
                 validator: (text) {
                   if (text.isNotEmpty && _pwController.text == text) {
                     return null;
@@ -101,7 +103,7 @@ class _SignUpFormState extends State<SignUpForm> {
               SizedBox(
                 height: common_s_gap,
               ),
-              _orDivider(),
+              OrDivider(),
               FlatButton.icon(
                   onPressed: () {},
                   textColor: Colors.blue,
@@ -116,74 +118,22 @@ class _SignUpFormState extends State<SignUpForm> {
 
   FlatButton _submitButton(BuildContext context) {
     return FlatButton(
-              color: Colors.blue,
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  print('validation success!');
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => HomePage()));
-                }
-              },
-              child: Text(
-                'Join',
-                style: TextStyle(color: Colors.white),
-              ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6)),
-            );
-  }
-
-  Stack _orDivider() {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Positioned(
-          left: 0,
-          right: 0,
-          height: 1,
-          child: Container(
-            color: Colors.grey[300],
-            height: 1,
-          ),
-        ),
-        Container(
-          color: Colors.grey[50], //착쉬
-          height: 3,
-          width: 60,
-        ),
-        Text(
-          'OR',
-          style:
-              TextStyle(color: Colors.grey[500], fontWeight: FontWeight.bold),
-        )
-      ],
+      color: Colors.blue,
+      onPressed: () {
+        if (_formKey.currentState.validate()) {
+          print('validation success!');
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => HomePage()));
+        }
+      },
+      child: Text(
+        'Join',
+        style: TextStyle(color: Colors.white),
+      ),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6)),
     );
   }
-
-  InputDecoration _textInputDecor(String hint) {
-    return InputDecoration(
-        hintText: hint,
-        enabledBorder: _activeInputBorder(),
-        focusedBorder: _activeInputBorder(),
-        errorBorder: _errorInputBorder(),
-        focusedErrorBorder: _errorInputBorder(),
-        filled: true,
-        fillColor: Colors.grey[100]);
-  }
-
-  OutlineInputBorder _activeInputBorder() {
-    return OutlineInputBorder(
-        borderSide: BorderSide(
-          color: Colors.grey[300],
-        ),
-        borderRadius: BorderRadius.circular(common_s_gap));
-  }
-
-  OutlineInputBorder _errorInputBorder() {
-    return OutlineInputBorder(
-        borderSide: BorderSide(
-          color: Colors.redAccent,
-        ),
-        borderRadius: BorderRadius.circular(common_s_gap));
-  }
 }
+
+
