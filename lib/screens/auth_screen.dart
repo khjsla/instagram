@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_two_record/screens/profile_screen.dart';
-import 'package:instagram_two_record/widgets/FadeStack.dart'; //지금은 안씀
+import 'package:instagram_two_record/widgets/FadeStack.dart'; //지금은 안
+import 'package:instagram_two_record/widgets/comment.dart';
 import 'package:instagram_two_record/widgets/sign_in_form.dart';
 import 'package:instagram_two_record/widgets/sign_up_form.dart';
 
@@ -31,6 +32,7 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         //핸드폰 맨 위에 적당한 간격이 생기게 해줌
         child: Stack(
@@ -42,10 +44,12 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
             Positioned(
               left: 0, // gap: 0
               right: 0,
-              bottom: 0, // 아래로 옴
+              bottom: 0,
+              height: 40,// 아래로 옴
               child: Container(
                 color: Colors.white,
                 child: FlatButton(
+                  shape: Border(top: BorderSide(color: Colors.grey)),
                   onPressed: () {
                     setState(() {
                       if (currentWidget is SignUpForm) {
