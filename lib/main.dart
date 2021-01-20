@@ -13,9 +13,9 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(
-      home: AuthScreen(),
-      ///home: HomePage(),
+    return MaterialApp( //set First Screen
+      //home: AuthScreen(),
+      home: HomePage(),
       theme: ThemeData( //app 전체에 적용을 해주고 싶으면 여기 main 에서 설정을 해줘야 한다.
         primarySwatch: white
       ),

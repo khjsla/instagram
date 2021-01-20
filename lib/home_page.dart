@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:instagram_two_record/screens/camera_screen.dart';
 import 'package:instagram_two_record/screens/feed_screen.dart';
 import 'package:instagram_two_record/screens/profile_screen.dart';
 
@@ -30,11 +31,17 @@ class _HomePageState extends State<HomePage> {
 
   int _selectedIndex = 0;
 
- static List<Widget> _screens = <Widget>[
+  static List<Widget> _screens = <Widget>[
     FeedScreen(),
-    Container(color: Colors.blueAccent),
-    Container(color: Colors.greenAccent),
-    Container(color: Colors.deepPurpleAccent),
+    Container(
+      color: Colors.blueAccent,
+    ),
+    Container( //to camera screen
+      color: Colors.greenAccent,
+    ),
+    Container(
+      color: Colors.deepPurpleAccent,
+    ),
     ProfileScreen(),
     //Command + D 해당 줄을 아래로 그대로 복사
   ];
@@ -56,15 +63,30 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black87,
         currentIndex: _selectedIndex,
-        onTap: _onBtmItemClick,
+        onTap: _onBtmItemClick, //how to handle Screen Where to go
       ),
     );
   }
 
   void _onBtmItemClick(int index){
-    print(index);
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch(index){
+      case 2:
+        _openCamera(); //to Method
+        // is to go other screen
+        // 그냥 외워 
+        break;
+      default:{
+        print(index);
+        setState(() {
+          _selectedIndex = index;
+        });
+      }
+    }
+    
+  }
+
+  void _openCamera() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => CameraScreen()));
   }
 }

@@ -60,7 +60,6 @@ class _SignInFormState extends State<SignInForm> {
               SizedBox(
                 height: common_xs_gap,
               ),
-
               ///높이 이만큼
               TextFormField(
                 controller: _pwController,
@@ -75,6 +74,14 @@ class _SignInFormState extends State<SignInForm> {
                     return '제대로된 비밀번호를 입력해주세용 :)';
                   }
                 },
+              ),
+              FlatButton( //add forgotten button
+                onPressed: () {  },
+                child: Align(
+                  alignment: Alignment.centerRight, //password 가 오른쪽으로 alignment
+                  child: Text('Forgotten Password?',
+              style: TextStyle(color: Colors.blue),),
+                ),
               ),
               SizedBox(
                 height: common_s_gap,
