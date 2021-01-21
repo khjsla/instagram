@@ -1,6 +1,6 @@
 # instagram_coding
 
-이거슨 ,,,
+:How to make Instagram UI with Flutter
 
 ## Getting Started
 
