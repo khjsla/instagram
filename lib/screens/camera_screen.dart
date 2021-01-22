@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_two_record/widgets/take_photo.dart';
 
 class CameraScreen extends StatefulWidget {
   @override
@@ -30,12 +31,13 @@ class _CameraScreenState extends State<CameraScreen> {
           Container(
             color: Colors.cyanAccent,
           ),
-          Container(
-            color: Colors.amberAccent,
-          ),
+          //first page
+          TakePhoto(), //MAKE TO WIDGET and IMPORT that
+          //middle page - TAKE PHOTO SECTION
           Container(
             color: Colors.greenAccent,
           ),
+          //third page
         ],
         onPageChanged: (index) {
           //print('page changed = $index');
@@ -83,3 +85,5 @@ class _CameraScreenState extends State<CameraScreen> {
     });
   }
 }
+
+
