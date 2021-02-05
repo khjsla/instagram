@@ -1,5 +1,6 @@
-import 'dart:html';
+//import 'dart:html';
 
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_two_record/screens/camera_screen.dart';
 import 'package:instagram_two_record/screens/feed_screen.dart';
@@ -34,6 +35,8 @@ class _HomePageState extends State<HomePage> {
   ];
 
   int _selectedIndex = 0;
+  //**** snack bar 는 꼭 Scaffold 안에서 사용해줘야해
+  GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   static List<Widget> _screens = <Widget>[
     FeedScreen(),
@@ -57,6 +60,7 @@ class _HomePageState extends State<HomePage> {
       size = MediaQuery.of(context).size;
     }
     return Scaffold(
+      key: _key, //** scaffold 안에서 Snackbar 를 사용해줘야 한다 **
       //Scaffold 안에 기본적인 틀 들이 들어있다
       body: IndexedStack(
         //1 container to Widget List
@@ -92,10 +96,25 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void _openCamera() async { //permission TRUE 해야, 카메라 사용가능 하도록
+  void _openCamera() async {
+    //permission TRUE 해야, 카메라 사용가능 하도록
     if (await checkIfPermissionGranted(context))
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => CameraScreen()));
+    else {
+      SnackBar snackBar = SnackBar(
+        content: Text('사진, 파일, 마이크 접근 허용을 해주셔야 카메라 사용이 가능합니다'),
+        action: SnackBarAction(
+          label: 'OK',
+          onPressed: () {
+            _key.currentState.hideCurrentSnackBar();//scaffold 안에서 선언된 _key 를 사
+            //Scaffold context 가져와야
+            AppSettings.openAppSettings(); //app 설정 페이지가 열리게 된
+         },
+        ),
+      );
+     _key.currentState.hideCurrentSnackBar(); //Scaffold 안에서 선언된걸 사용할 수 있다
+    }
   }
 
   Future<bool> checkIfPermissionGranted(BuildContext context) async {
@@ -104,7 +123,7 @@ class _HomePageState extends State<HomePage> {
     bool permitted = true;
 
     statuses.forEach((permission, permissionStatus) {
-      if (permissionStatus.isGranted) {
+      if (!permissionStatus.isGranted) {
         permitted = false;
       }
     });
